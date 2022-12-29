@@ -8,6 +8,8 @@ import 'react-native-gesture-handler';
 import CustomNavigation from './components/CustomNavigation'
 import NavigationControls from './components/NavigationControls'
 import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
 
 //Create navigation screen
 function ParentNavigator(props) {
@@ -51,7 +53,7 @@ export default function App() {
       console.log('Recieved a change!: ', payload);
     }).subscribe();
     getDecks();
-    
+
   }
   useEffect(() => {
     listenToChanges();
@@ -66,6 +68,7 @@ export default function App() {
     console.log(decks);
   }
 
+  if (!fontsLoaded) return <AppLoading/>;
 
   //{session && session.user? <ParentNavigator></ParentNavigator> : <Auth />}
   return (

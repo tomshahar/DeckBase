@@ -33,9 +33,6 @@ export default function DeckScreen(props) {
     const [keyCard1, setKeyCard1] = useState(null)
     const [keyCard2, setKeyCard2] = useState(null)
 
-
-
-
     useEffect(() => {
         for (let i = 0; i < props.deckContent.signature_cards.length; i++) {
             loadKeyCard(props.deckContent.signature_cards[i], i)
