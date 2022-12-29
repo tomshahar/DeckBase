@@ -134,6 +134,7 @@ function Player(props) {
                     props.setGameSettings({...props.game, players:  playersArray})
             }}>
                 <Icon 
+                    style={{fontSize: 30}}
                     name='minus-circle'                
                     size='24' 
                     color='rgba(255,255,255,0.5)'
@@ -148,6 +149,7 @@ function Player(props) {
 
             }}>
                 <Icon 
+                    style={{fontSize: 30}}
                     name='plus-circle'                
                     size='24' 
                     color='rgba(255,255,255,0.5)'

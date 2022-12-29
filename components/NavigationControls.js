@@ -12,6 +12,7 @@ export default function NavigationControls(props) {
             style={styles.navButton}
         >
             <Icon 
+								style={{fontSize: 30}}
                 name='theater-masks'                
                 size='32' 
                 color='black'
@@ -24,6 +25,7 @@ export default function NavigationControls(props) {
             style={styles.navButton}
         >
             <Icon 
+								style={{fontSize: 30}}
                 name='dice-d20' 
                 size='32' 
                 color='black'
@@ -36,6 +38,7 @@ export default function NavigationControls(props) {
             style={styles.navButton}
         >
             <Icon 
+								style={{fontSize: 30}}
                 name='dragon' 
                 size='32' 
                 color='black'
