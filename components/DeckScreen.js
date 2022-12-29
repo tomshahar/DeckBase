@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { Pressable, StyleSheet, View, Text, Image } from 'react-native'
 
 import Svg, { Circle, Rect, Polygon, Path } from 'react-native-svg';
 
@@ -107,9 +107,15 @@ export default function DeckScreen(props) {
                 <View style = {styles.deckTags}>
                     {props.deckContent.tags.map((tag) => {
                         return (
-                            <View style={styles.tag}>
+                            <Pressable 
+                                style = {styles.tag}
+                                onPress={() => {
+                                  props.setScreen(props.screens.Database);
+                                  props.setDeckFilter(tag);
+                                }}
+                            >
                                 <Text style={styles.tagText}>{tag}</Text>
-                            </View>
+                            </Pressable>
                         )
                     })}
                 </View>

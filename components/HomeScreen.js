@@ -18,7 +18,7 @@ export default function HomeScreen(props) {
   
   const [screen, setScreen] = useState(Screens.Database)
   const [deckContent, setDeckContent] = useState({})
-  // const [deckFilter, setDeckFilter] = useState(() => {true})
+	const [deckFilter, setDeckFilter] = useState(null)
 
   let deckLists = [
     {
@@ -75,6 +75,8 @@ export default function HomeScreen(props) {
 				return <DatabaseScreen
 						deckLists={deckLists}
 						decks={props.decks}
+				    deckFilter={deckFilter}
+						setDeckFilter={setDeckFilter}
 						setDeckContent={setDeckContent}
 						setScreen={setScreen}
 						screens={Screens}
@@ -82,7 +84,7 @@ export default function HomeScreen(props) {
 			case Screens.Deck:
 				return <DeckScreen
 						deckContent={deckContent}
-						// setDeckFilter={setDeckFilter}
+						setDeckFilter={setDeckFilter}
 						setScreen={setScreen}
 						screens={Screens}
 					></DeckScreen>
