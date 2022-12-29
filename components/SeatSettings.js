@@ -31,23 +31,23 @@ export default function SeatSettings(props) {
     const [deckChosen, setDeckChosen] = useState(false)
     const [deckPickerOpen, setDeckPickerOpen] = useState(false)
 
-    const playerList = [
-        {name: 'Tom', id: 0},
-        {name: 'Leo', id: 1},
-        {name: 'Dylan', id: 2},
-        {name: 'Henry', id: 3},
-        {name: 'Riley', id: 4},
+    let playerList = []
+    for (let i = 0; i < props.players.length; i++) {
+        playerList.push({
+            name: props.players[i],
+            id: i
+        })
+    }
+    playerList.push({name: 'GUEST', id: props.players.length})
 
-    ]
-    const deckList = [
-        {name: 'Estrid the Masked', id: 0},
-        {name: 'Kynaios and Tiro of Meletis', id: 1},
-        {name: 'Omnath, Locus of Creation', id: 2},
-        {name: 'Esika, God of the Tree', id: 3},
-        {name: 'Goreclaw, Terror of Qal Sisma', id: 4},
-
-    ]
-
+    let deckList = []
+    for (let i = 0; i < props.decks.length; i++) {
+        if (props.decks[i].player == player || player == 'Player' || player == 'GUEST')
+        deckList.push({
+            name: props.decks[i].name,
+            id: i
+        })
+    }
     
     return (
         <SafeAreaView>

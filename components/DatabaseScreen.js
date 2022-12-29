@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, Pressable } from 'react-native'
+import PowerLevelIcon from './PowerLevelIcon'
 
 
 
@@ -16,27 +17,30 @@ export default function DeckScreen(props) {
                       {props.setDeckPageOpen(true); props.setDeckContent(deck)}
                     }
                   >
-                    <View style={styles.colorWrapper}>
-                        <View>
-                            {deck.colors[0] ? <View style={styles.white}></View> : null}
-                        </View>
-                        <View>
-                            {deck.colors[1] ? <View style={styles.blue}></View> : null}
-                        </View>
-                        <View>
-                            {deck.colors[2] ? <View style={styles.black}></View> : null}
-                        </View>
-                        <View>
-                            {deck.colors[3] ? <View style={styles.red}></View> : null}
-                        </View>
-                        <View>
-                            {deck.colors[4] ? <View style={styles.green}></View> : null}
-                        </View>
-                    </View>
                     <View style={styles.deckTitleWrapper}>
+                        <View style={styles.colorWrapper}>
+                            <View>
+                                {deck.colors[0] ? <View style={styles.white}></View> : null}
+                            </View>
+                            <View>
+                                {deck.colors[1] ? <View style={styles.blue}></View> : null}
+                            </View>
+                            <View>
+                                {deck.colors[2] ? <View style={styles.black}></View> : null}
+                            </View>
+                            <View>
+                                {deck.colors[3] ? <View style={styles.red}></View> : null}
+                            </View>
+                            <View>
+                                {deck.colors[4] ? <View style={styles.green}></View> : null}
+                            </View>
+                        </View>
                       <Text style={styles.deckTitle}>{deck.name}</Text>
                       <Text style={styles.deckAuthor}>{deck.player}</Text>
                     </View>
+                    <PowerLevelIcon
+                        powerArray={deck.power_array}
+                    ></PowerLevelIcon>
                   </Pressable>
                 )
               })
@@ -52,6 +56,7 @@ const styles = StyleSheet.create({
     },
     deckListContainer: {
         marginHorizontal: 10,
+        paddingBottom: 100,
       },
       playerName: {
         fontSize: 24,
@@ -75,7 +80,8 @@ const styles = StyleSheet.create({
       },
       deckWrapper: {
         paddingVertical: 10,
-        flexDirection: 'column',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
       },
       white: {
         width: 12,

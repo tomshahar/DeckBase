@@ -66,6 +66,8 @@ export default function GameScreen(props) {
           game={game}
           setGameSettings={setGameSettings}
           numPlayers={numPlayers}
+          players={props.players}
+          decks={props.decks}
         ></GameSettings>}
     </View>
   )

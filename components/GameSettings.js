@@ -37,11 +37,15 @@ export default function GameSettings(props) {
                             game={props.game}
                             id={0}
                             setGameSettings={props.setGameSettings}
+                            decks={props.decks}
+                            players={props.players}
                         ></SeatSettings>
                         <SeatSettings
                             game={props.game}
                             id={1}
                             setGameSettings={props.setGameSettings}
+                            decks={props.decks}
+                            players={props.players}
                         ></SeatSettings>
                     </View>
                     <View style={styles.row}>
@@ -49,11 +53,15 @@ export default function GameSettings(props) {
                             game={props.game}
                             id={2}
                             setGameSettings={props.setGameSettings}
+                            decks={props.decks}
+                            players={props.players}
                         ></SeatSettings>
                         <SeatSettings
                             game={props.game}
                             id={3}
                             setGameSettings={props.setGameSettings}
+                            decks={props.decks}
+                            players={props.players}
                         ></SeatSettings>
                     </View>
 

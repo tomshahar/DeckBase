@@ -20,10 +20,11 @@ function ParentNavigator(props) {
         screen={screen}
         setScreen={setScreen}
         decks={props.decks}
+        players={props.players}     
       ></CustomNavigation>
       <NavigationControls
         screen={screen}
-        setScreen={setScreen}      
+        setScreen={setScreen} 
       ></NavigationControls>
     </View>
   );
@@ -36,6 +37,8 @@ export default function App() {
     'Righteous': require('./assets/Fonts/Righteous/Righteous-Regular.ttf'),
   });
   const [decks, setDecks] = useState([])
+  const [players, setPlayers] = useState([])
+
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -53,6 +56,7 @@ export default function App() {
       console.log('Recieved a change!: ', payload);
     }).subscribe();
     getDecks();
+    getPlayers();
 
   }
   useEffect(() => {
@@ -65,7 +69,25 @@ export default function App() {
       .from('Decks')
       .select('*');
     setDecks(data);
-    console.log(decks);
+    console.log(decks)
+  }
+  const getPlayers = async ( ) => {
+    const {data, error} = await supabase
+      .from('Decks')
+      .select('player')
+    let playerList = [];
+    for (let i=0; i < data.length; i++) {
+        let repeat = false;
+        for (let j = 0; j < data.length; j++) {
+           if (data[i].player == playerList[j]) {
+              repeat = true
+           }
+        }
+        if (!repeat) {
+          playerList.push(data[i].player)
+        }
+    }
+    setPlayers(playerList)
   }
 
   if (!fontsLoaded) return <AppLoading/>;
@@ -75,6 +97,7 @@ export default function App() {
     <View style={styles.container}>
       <ParentNavigator
         decks={decks}
+        players={players}
       ></ParentNavigator>
     </View>
   )

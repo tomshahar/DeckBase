@@ -19,6 +19,8 @@ export default function CustomNavigation(props) {
         return (
             <View style={styles.container}>
                 <GameScreen
+                    decks={props.decks}
+                    players={props.players}
                 ></GameScreen>
             </View>
         )
