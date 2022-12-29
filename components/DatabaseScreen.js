@@ -12,9 +12,10 @@ export default function DeckScreen(props) {
                 return (
                   <Pressable 
                     style = {styles.deckWrapper}
-                    onPress={() => 
-                      {props.setDeckPageOpen(true); props.setDeckContent(deck)}
-                    }
+                    onPress={() => {
+                      props.setScreen(props.screens.Deck);
+											props.setDeckContent(deck)
+										}}
                   >
                     <View style={styles.colorWrapper}>
                         <View>

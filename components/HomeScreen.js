@@ -10,9 +10,15 @@ export default function HomeScreen(props) {
   const [fontsLoaded] = useFonts({
     'Righteous': require('../assets/Fonts/Righteous/Righteous-Regular.ttf'),
   });
+
+	const Screens = {
+		Database: 0,
+		Deck: 1,
+	}
   
-  const [deckPageOpen, setDeckPageOpen] = useState(false)
+  const [screen, setScreen] = useState(Screens.Database)
   const [deckContent, setDeckContent] = useState({})
+  // const [deckFilter, setDeckFilter] = useState(() => {true})
 
   let deckLists = [
     {
@@ -61,18 +67,35 @@ export default function HomeScreen(props) {
       ]
     },
   ]
+
+	const activeScreen = function() {
+		console.log("screen:", screen);
+		switch(screen) {
+			case Screens.Database:
+				return <DatabaseScreen
+						deckLists={deckLists}
+						decks={props.decks}
+						setDeckContent={setDeckContent}
+						setScreen={setScreen}
+						screens={Screens}
+					></DatabaseScreen>
+			case Screens.Deck:
+				return <DeckScreen
+						deckContent={deckContent}
+						// setDeckFilter={setDeckFilter}
+						setScreen={setScreen}
+						screens={Screens}
+					></DeckScreen>
+			// case Screens.Tag:
+			// 	return tagScreen;
+		}
+
+	}
+
   // 
   return (
     <ScrollView style={styles.container}>
-      {!deckPageOpen ? <DatabaseScreen
-        deckLists={deckLists}
-        decks={props.decks}
-        deckPageOpen={deckPageOpen}
-        setDeckPageOpen={setDeckPageOpen}
-        setDeckContent={setDeckContent}
-      ></DatabaseScreen> : <DeckScreen
-        deckContent={deckContent}
-      ></DeckScreen> }
+      { activeScreen() }
     </ScrollView>
   )
 }
