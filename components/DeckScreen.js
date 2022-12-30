@@ -170,7 +170,9 @@ const styles = StyleSheet.create({
     },
     deckTitle: {
         fontSize: 24,
-        fontFamily: 'Righteous'
+        fontFamily: 'Righteous',
+        maxWidth: 300,
+
     },
     deckAuthor: {
         fontSize: 16,

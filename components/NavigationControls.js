@@ -7,6 +7,7 @@ export default function NavigationControls(props) {
     <View style={styles.container}>
         <Pressable
             onPress={() => {
+                props.getDecks()
                 props.setScreen(0)
             }}
             style={styles.navButton}

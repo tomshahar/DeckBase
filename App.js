@@ -26,6 +26,7 @@ function ParentNavigator(props) {
       <NavigationControls
         screen={screen}
         setScreen={setScreen} 
+        getDecks={props.getDecks}
       ></NavigationControls>
     </View>
   );
@@ -110,6 +111,7 @@ export default function App() {
         decks={decks}
         players={players}
         addDeck={addDeck}
+        getDecks={getDecks}
       ></ParentNavigator> : <Auth />}
     </View>
   )

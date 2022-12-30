@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, View, Text, Pressable, ScrollView, TextInput, Image } from 'react-native'
 import {Slider} from '@miblanchard/react-native-slider'
 
@@ -58,14 +58,24 @@ export default function NewDeckScreen(props) {
         }
     };
 
-
-
     let pathString = PowerPath([slider0, slider1, slider2, slider3, slider4, slider5])
     let powerLevel = EuclydianNorm([slider0, slider1, slider2, slider3, slider4, slider5])
 
+    const scrollRef = useRef();
+    const onOpenInput = () => {
+        scrollRef.current?.scrollToEnd({
+          animated: true,
+        });
+    }
+      
+
 
     return (
-        <ScrollView style={{flex: 1}}>
+        <ScrollView 
+            style={{flex: 1}}
+            keyboardShouldPersistTaps={'handled'}
+            ref={scrollRef}
+        >
         <View style={styles.container}>
 
 
@@ -291,6 +301,7 @@ export default function NewDeckScreen(props) {
                     clearTextOnFocus={true}
                     onFocus={() => {
                         setTagInputFocused(true)
+                        onOpenInput()
                     }}
                     onEndEditing={() => {
                         setTagInputFocused(false)
@@ -343,17 +354,18 @@ export default function NewDeckScreen(props) {
                     }
                 </View>
                 <TextInput
-                    style={styles.tagInputText}
+                    style={[styles.tagInputText, styles.keyInputTextModifier]}
                     value={currentKeyInput}
                     onChangeText={setCurrentKeyInput}
                     clearTextOnFocus={true}
                     onFocus={() => {
                         setKeyInputFocused(true)
+                        onOpenInput()
                     }}
                     onEndEditing={() => {
                         setKeyInputFocused(false)
                     }}
-                    onSubmit={() => {
+                    onSubmitEditing={() => {
                         let tagArray = [...keyCards]
                         if (keyCards.length < 3) {
                             tagArray.push(currentKeyInput)
@@ -460,7 +472,8 @@ const styles = StyleSheet.create({
     powerNumber: {
         fontFamily: 'Righteous',
         fontSize: 16,
-        color: '#BB86FC'
+        color: '#BB86FC',
+        marginLeft: 4,
     },
     sliderWrapper0: {
     },
@@ -489,49 +502,49 @@ const styles = StyleSheet.create({
         maxWidth: 75,
     },
     emptyCircle: {
-        width: 16,
-        height: 16,
+        width: 20,
+        height: 20,
         borderRadius: 20,
         backgroundColor: 'rgba(187, 134, 252, 0.3)',
-        marginHorizontal: 2,
+        marginHorizontal: 4,
     },
     white: {
-        width: 16,
-        height: 16,
+        width: 20,
+        height: 20,
         borderRadius: 20,
         backgroundColor: '#F7EBE8',
-        marginHorizontal: 2,
+        marginHorizontal: 4,
     },
     blue: {
-        width: 16,
-        height: 16,
+        width: 20,
+        height: 20,
         borderRadius: 20,
         backgroundColor: '#5C95FF',
-        marginHorizontal: 2,
+        marginHorizontal: 4,
 
     },
     black: {
-        width: 16,
-        height: 16,
+        width: 20,
+        height: 20,
         borderRadius: 20,
         backgroundColor: '#3A2E39',
-        marginHorizontal: 2,
+        marginHorizontal: 4,
 
     },
     red: {
-        width: 16,
-        height: 16,
+        width: 20,
+        height: 20,
         borderRadius: 20,
         backgroundColor: '#F87575',
-        marginHorizontal: 2,
+        marginHorizontal: 4,
 
     },
     green: {
-        width: 16,
-        height: 16,
+        width: 20,
+        height: 20,
         borderRadius: 20,
         backgroundColor: '#79C99E',
-        marginHorizontal: 2,
+        marginHorizontal: 4,
 
     },
     colorWrapper: {
@@ -542,6 +555,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontFamily: 'Righteous',
         color: '#BB86FC',
+        marginLeft: 5,
     },    
     deckTitleRow: {
         flexDirection: 'row',
@@ -596,6 +610,9 @@ const styles = StyleSheet.create({
         flex: 1,
         marginVertical: 2,
         minWidth: 50,
+    },
+    keyInputTextModifier: {
+        minWidth: 150,
     },
     submitButton: {
         marginTop: 1,
