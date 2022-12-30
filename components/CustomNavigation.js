@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import HomeScreen from './HomeScreen'
 import AccountScreen from './AccountScreen'
 import GameScreen from './GameScreen'
-import DeckScreen from './DeckScreen'
+import NewDeckScreen from './NewDeckScreen'
 
 
 export default function CustomNavigation(props) {
@@ -27,8 +27,9 @@ export default function CustomNavigation(props) {
     } else if (props.screen == 2) {
         return (
             <View style={styles.container}>
-                <AccountScreen
-                ></AccountScreen>
+                <NewDeckScreen
+                    addDeck={props.addDeck}
+                ></NewDeckScreen>
             </View>
         )
     }

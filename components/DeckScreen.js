@@ -4,6 +4,8 @@ import { Pressable, StyleSheet, View, Text, Image } from 'react-native'
 import Svg, { Circle, Rect, Polygon, Path } from 'react-native-svg';
 
 export function PowerPath(values) {
+
+
     const SVG = [
         ['M87 85.1777 ', 'L99.8372 92.589 ', 'L99.8372 107.412 ', 'L87 114.823 ', 'L74.1636 107.412 ', 'L74.1636 92.589Z '],
         ['M87 62.0774 ', 'L119.842 81.0387 ', 'L119.842 118.961 ', 'L87 137.923 ', 'L54.158 118.961 ', 'L54.158 81.0387Z '],
@@ -14,7 +16,7 @@ export function PowerPath(values) {
     return pathString
 }
 
-function EuclydianNorm(array) {
+export function EuclydianNorm(array) {
     let total = 0
     for (let i = 1; i < array.length; i++) {
         total += Math.pow(array[i], 2)
@@ -27,6 +29,7 @@ function EuclydianNorm(array) {
 
 
 export default function DeckScreen(props) {
+    console.log(props.deckContent)
     let pathString = PowerPath(props.deckContent.power_array)
     let powerLevel = EuclydianNorm(props.deckContent.power_array)
     const [keyCard0, setKeyCard0] = useState(null)
@@ -57,7 +60,6 @@ export default function DeckScreen(props) {
         }
     };
 
-    console.log(keyCard0)
 
 
     return (

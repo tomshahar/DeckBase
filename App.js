@@ -20,7 +20,8 @@ function ParentNavigator(props) {
         screen={screen}
         setScreen={setScreen}
         decks={props.decks}
-        players={props.players}     
+        players={props.players} 
+        addDeck={props.addDeck}    
       ></CustomNavigation>
       <NavigationControls
         screen={screen}
@@ -90,15 +91,26 @@ export default function App() {
     setPlayers(playerList)
   }
 
+  const addDeck = async (deck, author, colorArray, tagArray, keyCardArray, powerArray) => {
+    const {data, error} = await supabase 
+        .from('Decks')
+        .insert(
+            { name: deck, player: author, colors: colorArray, tags: tagArray, signature_cards: keyCardArray, power_array: powerArray},
+        ).select()
+    console.log(data, error);
+}
+
+
   if (!fontsLoaded) return <AppLoading/>;
 
-  //{session && session.user? <ParentNavigator></ParentNavigator> : <Auth />}
+  //
   return (
     <View style={styles.container}>
-      <ParentNavigator
+      {session && session.user? <ParentNavigator
         decks={decks}
         players={players}
-      ></ParentNavigator>
+        addDeck={addDeck}
+      ></ParentNavigator> : <Auth />}
     </View>
   )
 }
